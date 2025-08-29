@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "298340398928",
+    "project_id": "livelocationdemo-d3cb8",
+    "storage_bucket": "livelocationdemo-d3cb8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:298340398928:android:846691e870df0d66415e55",
+        "android_client_info": {
+          "package_name": "com.rinnt.livelocationdemo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHcAk9dl8gFOJ-DqtpWj719mUEXnDawt8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
