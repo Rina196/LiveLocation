@@ -13,7 +13,7 @@
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",
     "@react-native-firebase/app": "^23.2.0",
-    "@react-native-firebase/  ": "^23.2.0",
+    "@react-native-firebase/firestore": "^23.2.0",
     "@react-native-firebase/messaging": "^23.2.0",
     "@react-navigation/bottom-tabs": "^7.3.10",
     "@react-navigation/elements": "^2.3.8",

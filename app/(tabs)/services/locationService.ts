@@ -23,7 +23,7 @@ export async function startBackgroundLocation() {
   if (!isRegistered) {
     await Location.startLocationUpdatesAsync(LOCATION_TASK_NAME, {
       accuracy: Location.Accuracy.Highest,
-      timeInterval: 5000,       // every 5 sec
+      timeInterval: 10000,       // every 10 sec
       distanceInterval: 5,      // or every 5 meters
       showsBackgroundLocationIndicator: true, // iOS blue bar
       foregroundService: {
