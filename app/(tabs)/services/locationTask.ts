@@ -29,7 +29,7 @@ TaskManager.defineTask(LOCATION_TASK_NAME, async ({ data, error }) => {
 
     console.log("Location updated:", { latitude, longitude });
 
-  fetch('https://ca3cfdb02536dae20854.free.beeceptor.com/api/users/', {
+  fetch('http://192.168.1.168:3000/log', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ TaskManager.defineTask(LOCATION_TASK_NAME, async ({ data, error }) => {
   })
   .catch(error => {
     console.error('Error:', error);
-     fetch('https://ca3cfdb02536dae20854.free.beeceptor.com/api/users/', {
+     fetch('http://192.168.1.168:3000/log', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
