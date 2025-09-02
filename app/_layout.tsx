@@ -28,11 +28,13 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-     <Stack>
+     <Stack screenOptions={{ headerShown: false }}>
       {/* each file is auto-mapped */}
       <Stack.Screen name="index" options={{ title: "Login" }} />
       <Stack.Screen name="home" options={{ title: "Home" }} />
       <Stack.Screen name="notification" options={{ title: "Notification" }} />
+      <Stack.Screen name="otp" options={{ title: "OTP" }} />
+
     </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>

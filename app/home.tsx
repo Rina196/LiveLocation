@@ -1,10 +1,15 @@
+import { router } from 'expo-router';
 import React, { useState } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, KeyboardAvoidingView, Platform, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
+import { useAuthStore } from './services/authStore';
 import { startBackgroundLocation, stopBackgroundLocation } from './services/locationService';
 
-
 export default function Home() {
-const [tracking, setTracking] = useState(false);
+  const [tracking, setTracking] = useState(false);
+  const { reSetUserStore } = useAuthStore();
+    const insets = useSafeAreaInsets();
+  
 
   
   const handleStart = async () => {
@@ -33,24 +38,45 @@ const [tracking, setTracking] = useState(false);
     setTracking(false);
   };
 
+  const logout = async () => {
+   reSetUserStore()
+   router.dismissAll()
+  };
+
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.safeArea} edges={["top", "left", "right"]}>
+          <KeyboardAvoidingView
+            style={{ flex: 1 }}
+            behavior={Platform.OS === "ios" ? "padding" : undefined}
+          >
+<View style={styles.container}>
       <Text style={styles.title}>📍 Live Location</Text>
       {tracking ? (
         <Button title="Stop Tracking" onPress={handleStop} />
       ) : (
         <Button title="Start Tracking" onPress={handleStart} />
       )}
+      
     </View>
+
+    <View style={{flex:1, justifyContent:'flex-end', paddingBottom: insets.bottom + 20 || 16,     alignItems: 'center',
+}}>
+        <Button title="Logout" onPress={logout}  />
+      </View>
+    </KeyboardAvoidingView>
+  </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: "#FBF5EF",
+  },
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     alignItems: 'center',
-    backgroundColor: '#fff',
   },
   title: {
     fontSize: 20,
