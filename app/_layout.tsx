@@ -1,22 +1,24 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
+import { Stack, useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { useEffect } from 'react';
-import { notificationListener, requestUserPermission } from './(tabs)/services/firebaseNotification';
+import { backgroundHandler, notificationListener, requestUserPermission } from './services/firebaseNotification';
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
+  const router = useRouter();
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
 
   useEffect(() => {
       requestUserPermission();
-      notificationListener();
-    }, []);
+      notificationListener(router);
+      backgroundHandler(router);
+    }, [router]);
   
 
   if (!loaded) {
@@ -26,10 +28,12 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
+     <Stack>
+      {/* each file is auto-mapped */}
+      <Stack.Screen name="index" options={{ title: "Login" }} />
+      <Stack.Screen name="home" options={{ title: "Home" }} />
+      <Stack.Screen name="notification" options={{ title: "Notification" }} />
+    </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>
   );
